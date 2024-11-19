@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from '@prisma/extension-accelerate'
 import { sign } from 'hono/jwt'
-import { signupInput , signinInput} from '@swastikap/blogify-common';
+import { signupInput, signinInput} from '@swastikapradhan669/blogify-common';
 
 export const userRouter = new Hono<{
   Bindings: {
@@ -15,21 +15,19 @@ userRouter.post('/signup', async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
-
   const body = await c.req.json();
-  const { success } = signupInput.safeParse(body);
+  const { success,error } = signupInput.safeParse(body);
   if (!success) {
+    console.log(error);
     c.status(411);
     return c.json({
-      message: "Input not correct",
+      message: "Input not correct"
     })
   }
-
-
   try {
     const user = await prisma.user.create({
       data: {
-        name: body.name,
+        name:body.name,
         email: body.email,
         password: body.password
       }
@@ -48,20 +46,22 @@ userRouter.post('/signup', async (c) => {
 
 });
 
-
-
-
 userRouter.post('/signin', async (c) => {
   const body = await c.req.json();
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
-
+  const { success } = signinInput.safeParse(body);
+  if (!success) {
+    c.status(411);
+    return c.json({
+      message: "Input not correct"
+    })
+  }
   try {
     const user = await prisma.user.findFirst({
       where: {
         email: body.email,
-        name: body.name,
         password: body.password
       }
     });
