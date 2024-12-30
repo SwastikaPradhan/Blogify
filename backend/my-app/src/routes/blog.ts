@@ -140,5 +140,58 @@ blogRouter.get('/:id',async(c)=>{
     }
 });
 
+blogRouter.delete("/delete/:id",async(c)=>{
+    const prisma= new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+
+    }).$extends(withAccelerate());
+
+    const token=c.req.header("authorization");
+    if(!token){
+        return c.json({msg:"Authentication token is missing"});
+    }
+    let userId;
+    try{
+        const decoded = await verify(token,c.env.JWT_SECRET);
+        userId=decoded.id;
+    }catch(e){
+        return c.json({msg:"Invalid or expired token"});
+    }
+
+
+    const postId= await c.req.param("id");
+    try{
+        const post = await prisma.blog.findUnique({
+            where:{
+                id:postId
+            }
+        });
+        if(!post){
+            return c.json({msg:"Post not found"});
+        }
+        if(post.authorId != userId){
+            return c.json({mesg:"User not authorized to delete this post"})
+        }
+        console.log(post.authorId);
+        console.log(userId);
+
+        await prisma.blog.delete({
+            where:{
+                id: postId
+            }
+
+        });
+        return c.json({
+            message:"Successfully deleted the post"
+        });
+    }catch(e){
+
+        return c.json({msg:"Failed to delete post"});
+    }
+
+})
+
+
+
 
 export default blogRouter;

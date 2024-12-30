@@ -4,6 +4,10 @@ import Signin from './pages/Signin'
 import {Blogs} from './pages/Blogs'
 import {Blog} from "./pages/Blog";
 import {Publish} from "./pages/Publish"
+import TextGenerator from './pages/GeneratewithAi';
+
+
+
 function App() {
   return (
     <>
@@ -14,7 +18,9 @@ function App() {
       <Route path="/signin" element={<Signin/>}/>
       <Route path="/blog" element={<Blogs/>}/>
       <Route path="/blog/:id" element={<Blog/>}/>
-      <Route path="/publish" element={<Publish/>}/>    
+      <Route path="/publish" element={<Publish/>}/>  
+      <Route path="/GenerateyourthoughtswithAI" element={<TextGenerator/>}/>  
+      
       
       </Routes>
     

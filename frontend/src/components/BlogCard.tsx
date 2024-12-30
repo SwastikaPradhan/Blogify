@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom"
+
 interface BlogCardProps {
   authorName: string;
   title: string;
   content: string;
   publishedDate: string;
-  id: number;
+  id: string;
+ 
 }
 export const BlogCard = ({
   id,
@@ -45,7 +47,7 @@ export function Avatar({ name }: { name: string }) {
   return (
     <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden  rounded-full bg-green-400">
       <span className="font-medium text-black">
-        {name[0]}{name[1]} {/* Display the first two letters */}
+        {name[0]}{name[1]} 
       </span>
     </div>
   );

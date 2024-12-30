@@ -42,10 +42,10 @@ export declare const updateBlogPost: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     title: string;
     content: string;
-    id: number;
+    id: String;
 }, {
     title: string;
     content: string;
-    id: number;
+    id: string;
 }>;
 export type updateBlogPost = z.infer<typeof updateBlogPost>;

@@ -24,10 +24,10 @@ export const Blogs = () => {
     <div>
       <Appbar />
       <div className="flex justify-center">
-        <div>
+        <div className="max-w-xl">
           {blogs.map(blog => 
           <BlogCard
-            id={blog.id}            
+            id={String(blog.id)}            
             authorName={blog.author.name || "Swastika"}
             title={blog.title || "Untitled"}
             content={blog.content || "No content avaiable"}
