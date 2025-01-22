@@ -33,13 +33,16 @@ userRouter.post('/signup', async (c) => {
         password: body.password
       }
     });
-    const jwt = await sign({
+    const userResponse = {
+      id:user.id,
+      name:user.name,
+      email:user.email
+    }
+    const token = await sign({
       id: user.id
     }, c.env.JWT_SECRET);
-
-    return c.json({
-      jwt:jwt
-   })
+    c.header("Content-Type", "text/plain");
+    return c.text(`${token}\nuser ${user.id}\nname ${user.name}`);
 
   } catch (error) {
     return c.text('Invalid')
@@ -76,6 +79,7 @@ userRouter.post('/signin', async (c) => {
     const jwt = await sign({
       id: user.id
     }, c.env.JWT_SECRET);
+    c.header('Content-Type','text/plain');
 
     return c.text(jwt);
 
@@ -84,3 +88,4 @@ userRouter.post('/signin', async (c) => {
   }
 
 });
+

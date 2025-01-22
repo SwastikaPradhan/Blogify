@@ -19,7 +19,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 
         }
         catch(e){
-            alert("Error while connecting")
+            alert("Error while connecting");
         }
     }
     return (

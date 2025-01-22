@@ -56,7 +56,8 @@ blogRouter.use("/*",async(c,next)=>{
             message:"You are not logged in!"
         })
     }
-})
+});
+
 blogRouter.post('/',async(c)=>{
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
@@ -72,7 +73,7 @@ blogRouter.post('/',async(c)=>{
             data:{
                 title:body.title,
                 content: body.content,
-                authorId:authorId 
+                authorId:authorId
             }
         });
         return c.json({

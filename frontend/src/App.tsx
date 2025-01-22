@@ -5,6 +5,7 @@ import {Blogs} from './pages/Blogs'
 import {Blog} from "./pages/Blog";
 import {Publish} from "./pages/Publish"
 import TextGenerator from './pages/GeneratewithAi';
+import HeroPage from './components/HeroPage';
 
 
 
@@ -13,7 +14,7 @@ function App() {
     <>
     <BrowserRouter>
     <Routes>
-
+         <Route path="/" element={<HeroPage/>}/>
       <Route path ='/signup' element={<Signup/>}/>
       <Route path="/signin" element={<Signin/>}/>
       <Route path="/blog" element={<Blogs/>}/>

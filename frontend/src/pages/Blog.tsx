@@ -37,9 +37,14 @@ export const Blog = () => {
     }
 
    //blog is found
-    return (
-        <div>
-            <FullBlog {...blog}/>
-        </div>
-    );
+   return (
+    <div>
+        <FullBlog 
+            content={blog.content}
+            title={blog.title}
+            author={blog.author}
+            id={blog.id}
+        />
+    </div>
+);
 };

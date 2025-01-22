@@ -1,11 +1,20 @@
 import { Avatar } from "./BlogCard";
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
+
 
 export const Appbar = () => {
+    const onSearch = (query: string) => {
+        console.log("Search query:", query);
+    }
     return (
-        <div className="border-b flex justify-between px-10 py-3">
+        <div className="border-b flex justify-between px-10 py-3 h-16">
             <div className="flex flex-col text-lg justify-center font-bold cursor-pointer">
-                <Link to="/blog">Blogify</Link>
+                <Link to="/blog" className="flex items-center text-4xl font-bold text-stone-800">Blogify</Link>
+
+            </div>
+            <div className="flex-grow max-w-md mx-2 px-2">
+                <SearchBar onSearch={onSearch} />
             </div>
             <div className="flex items-center space-x-4">
                 <Link to="/GenerateyourthoughtswithAI">
