@@ -12,7 +12,9 @@ export const blogRouter = new Hono<{
     Variables:{
         userId:string;
     }
-}>();
+}>()
+;
+
 
 blogRouter.get('/getallposts', async(c) => {
     const prisma = new PrismaClient({
@@ -42,6 +44,41 @@ blogRouter.get('/getallposts', async(c) => {
     
 
 })
+blogRouter.get('/:id',async(c)=>{
+    const userid = c.req.param("id")
+    console.log(userid)
+    const prisma = new PrismaClient({
+        datasourceUrl:c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+    try{
+        const blog = await prisma.blog.findFirst({
+            where:{
+                id:userid
+            },
+            select:{
+                id:true,
+                title:true,
+                content:true,
+                author:{
+                    select:{
+                        name:true
+                    }
+                }
+            }
+        })
+        console.log(blog)
+
+        return c.json({
+            blog
+        });
+    }catch(e) {
+
+        c.status(411);
+        return c.json({
+            message:"Message while fetching blg post"
+        });
+    }
+});
 
 blogRouter.use("/*",async(c,next)=>{
     const authHeader = c.req.header("authorization") || "";
@@ -63,12 +100,13 @@ blogRouter.post('/',async(c)=>{
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
 
-    const body = await c.req.json();
+   
     
 
     try{       
         const authorId= c.get("userId");
         const body = await c.req.json();
+        console.log(body);
         const blog = await prisma.blog.create({
             data:{
                 title:body.title,
@@ -107,39 +145,7 @@ blogRouter.put('/',async(c)=>{
 })
 
 
-blogRouter.get('/:id',async(c)=>{
-    const userid = c.req.param("id")
-    const prisma = new PrismaClient({
-        datasourceUrl:c.env.DATABASE_URL,
-    }).$extends(withAccelerate());
-    try{
-        const blog = await prisma.blog.findFirst({
-            where:{
-                id:userid
-            },
-            select:{
-                id:true,
-                title:true,
-                content:true,
-                author:{
-                    select:{
-                        name:true
-                    }
-                }
-            }
-        })
 
-        return c.json({
-            blog
-        });
-    }catch(e) {
-
-        c.status(411);
-        return c.json({
-            message:"Message while fetching blg post"
-        });
-    }
-});
 
 blogRouter.delete("/delete/:id",async(c)=>{
     const prisma= new PrismaClient({
