@@ -2,6 +2,7 @@ import { Button } from "./ui/button";
 import { ArrowRight, Coffee, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { PiHandbagFill } from "react-icons/pi";
 
 const Scale = {
   initial: {
@@ -20,6 +21,10 @@ const Hero = () => {
   return (
     <section className=" w-full py-2 md:py-24 lg:py-32 xl:py-38 relative select-none flex flex-col gap-20"
     >
+      
+      <div className="absolute top-6 left-6 flex items-center text-white text-2xl font-bold tracking-wide">
+      <PiHandbagFill className="mr-2" /> Blogify
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -39,7 +44,8 @@ const Hero = () => {
           Unleash the Power of AI for Your Blog!
           </h1>
           <p className="mx-auto max-w-[700px] text-gray-300 md:text-xl lg:text-2xl">
-          Generate engaging blog posts effortlessly with AI-powered content creation.
+          Create engaging blog posts with the power of artificial intelligence. Transform your ideas into well-crafted articles in minutes.
+
           </p>
         </motion.div>
         <motion.div
@@ -70,31 +76,7 @@ const Hero = () => {
         </motion.div>
         
       </motion.div>
-      <div className="relative z-50 ">
-        <motion.img
-          {...{
-            ...Scale,
-            transition: { ...Scale.transition, delay: 0.35 },
-          }}
-          src="/images/landing-hero.jpeg"
-          alt="Landing page background"
-          width={1512}
-          height={1405}
-          draggable="false"
-          className="z-40 md:mt-[-40px] w-full hidden sm:block h-full max-w-[70vw] mx-auto md:w-full select-none px-5 !rounded-2xl"
-          style={{
-            borderRadius: "20px",
-          }}
-        />
-        <motion.div
-          {...{
-            ...Scale,
-            transition: { ...Scale.transition, delay: 0.15 },
-          }}
-          className="absolute -z-10 left-0 top-[10%] h-32 w-[90%] hidden md:block overflow-x-hidden bg-[rgba(255,255,255,.5)] bg-opacity-100  blur-[337.4px]"
-          style={{ transform: "rotate(-30deg)" }}
-        />
-      </div>
+      
       
     </section>
   );
