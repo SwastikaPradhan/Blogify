@@ -1,12 +1,9 @@
 
 import { Link, useNavigate } from "react-router-dom";
-import SearchBar from "./SearchBar";
 import {MouseEventHandler, useState } from "react";
 
 export const Appbar = () => {
-    const onSearch = (query: string) => {
-        console.log("Search query:", query);
-    }
+
 
     return (
         <div className="border-b flex justify-between px-10 py-3 h-16">

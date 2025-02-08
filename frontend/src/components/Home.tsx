@@ -1,21 +1,10 @@
 import { Button } from "./ui/button";
-import { ArrowRight, Coffee, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { PiHandbagFill } from "react-icons/pi";
 
-const Scale = {
-  initial: {
-    opacity: 0,
-    scale: 1.1,
-  },
-  whileInView: { opacity: 1, scale: 1 },
-  transition: {
-    duration: 0.5,
-    ease: "easeInOut",
-  },
-  viewport: { once: true },
-};
+
 
 const Hero = () => {
   return (

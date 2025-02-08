@@ -1,8 +1,6 @@
 import { Appbar } from "./Appbar";
-//import axios from "axios";
-//import { useState } from "react";
 import { Avatar } from "./BlogCard";
-//import { TRANSLATE_KEY } from '../pages/config';
+
 
 interface Blog {
   content: string;
@@ -13,7 +11,7 @@ interface Blog {
   };
 }
 
-export const FullBlog = ({ author, id, content, title }: Blog) => {
+export const FullBlog = ({ author,  content, title }: Blog) => {
  
 
   return (

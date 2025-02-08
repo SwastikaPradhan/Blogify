@@ -11,7 +11,7 @@ export const Blog = () => {
     console.log(blog)
 
    //loading state handling
-    if (loading) {
+    if (loading || !blog) {
         return (
             <div>
                 <Appbar />

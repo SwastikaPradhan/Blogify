@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
