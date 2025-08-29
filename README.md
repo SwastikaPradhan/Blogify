@@ -5,7 +5,7 @@ AI-Powered Blog Management System: Create, Edit, and Generate Content Seamlessly
 ## Technologies Used
 
 - **Frontend**: React
-- **Backend**: Cloudflare Workers
+- **Backend**: Honojs
 - **Validation Library**: Zod
 - **Language**: TypeScript
 - **ORM**: Prisma
