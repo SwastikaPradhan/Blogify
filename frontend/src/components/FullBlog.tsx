@@ -14,7 +14,7 @@ interface Blog {
   };
 }
 
-export const FullBlog = ({ author, content, title, id }: Blog) => {
+export const FullBlog = ({ author, content, title}: Blog) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(content);
   const [editedTitle, setEditedTitle] = useState(title);

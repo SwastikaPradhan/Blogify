@@ -1,6 +1,4 @@
- export const BACKEND_URL="http://127.0.0.1:8787"
- 
- export const  TRANSLATE_KEY='510848b5d2msh10bcae420fb679ap165a48jsnd553c8d68c20'
+export const BACKEND_URL="https://my-app.swastikapradhan51.workers.dev"
 
 export const  REACT_APP_API_KEY="AIzaSyCpM1MZLE_nTAEhcNu0czQpIeoUvPn_ffk"
  
