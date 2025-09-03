@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import {Hono} from "hono";
-import { verify,jwt } from "hono/jwt";
+import { verify} from "hono/jwt";
 //router configuration
 export const blogRouter = new Hono<{
     Bindings:{
@@ -109,8 +109,6 @@ blogRouter.post('/',async(c)=>{
         return c.json({ message: "User ID not found. Are you logged in?" }, 403);
     }
     try{   
-        console.log("Body received:", body);
-        console.log("Author ID:", authorId);      
         //create new blog post with title,content and authorid     
         const blog = await prisma.blog.create({
             data:{
@@ -119,7 +117,6 @@ blogRouter.post('/',async(c)=>{
                 authorId:authorId
             }
         });
-        console.log("Created Blog:", blog.id, authorId);
         //return blog id and authorid
         return c.json({
             id:blog.id,
