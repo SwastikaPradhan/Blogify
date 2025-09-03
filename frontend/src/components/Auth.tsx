@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { SignupInput } from "@swastikapradhan669/blogify-common";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+
 export const Auth = ({ type }: { type: "signup" | "signin" }) => {
     const navigate = useNavigate();
     const [postInputs, setPostInputs] = useState<SignupInput>({
@@ -10,99 +11,126 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
         email: "",
         password: ""
     });
-     async function sendRequest() {  //http://127.0.0.1:8787/api/v1/user/signup
-        try{
-        const response=await axios.post(`${BACKEND_URL}/api/v1/user/${type ==="signup" ? "signup" : "signin"}`,postInputs);
-        const jwt= response.data;
-        console.log(jwt)
-        localStorage.setItem("token",JSON.stringify(jwt));
-        navigate("/blog");
 
-        }
-        catch(e){
+    async function sendRequest() {
+        try {
+            const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`, postInputs);
+            const jwt = response.data;
+            console.log(jwt);
+            localStorage.setItem("token", JSON.stringify(jwt));
+            navigate("/blog");
+        } catch (e) {
             alert("Error while connecting");
         }
     }
-    return (
-        <div className="h-screen flex justify-center flex-col">
-            <div className="flex justify-center">
-                <div>
-                    <div className="px-10">
-                        <div className="text-3xl font-bold">
-                            Create an account
-                        </div>
-                        <div className="text-slate-400">
-                            {type === "signin" ? "Don't have an account" : "Already have an account?"}
-                            <Link className="underline" to={type === "signin" ? "/signup" : "/signin"}>
-                                {type === "signup" ? "Sign in" : "Sign up"}
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="pt-5">
-                        {type === "signup" ?
 
+    return (
+        <div className="min-h-screen flex justify-center items-center bg-black p-4">
+            <div className="w-full max-w-md">
+                {/* Main Auth Card */}
+                <div className="bg-gray-900 border border-gray-700 rounded-xl shadow-2xl p-8">
+                    {/* Header */}
+                    <div className="text-center mb-8">
+                        <h1 className="text-3xl font-bold text-white mb-2">
+                            {type === "signup" ? "Create Account" : "Welcome Back"}
+                        </h1>
+                        <p className="text-gray-400 text-sm">
+                            {type === "signup" ? "Join our community today" : "Sign in to your account"}
+                        </p>
+                    </div>
+
+                    {/* Form */}
+                    <div className="space-y-4">
+                        {type === "signup" && (
                             <LabelInput
-                                label="Name"
-                                placeholder="Swastika Pradhan....."
+                                label="Full Name"
+                                placeholder="Enter your full name"
                                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                                    setPostInputs ({
+                                    setPostInputs({
                                         ...postInputs,
                                         name: e.target.value
                                     });
-                                }} /> : null
-                        }
-                        <div className="pt-2">
-                            <LabelInput
-                                label="Email"
-                                placeholder="Swastika@gmail.com"
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                                    setPostInputs((currentInput) => ({
-                                        ...currentInput,
-                                        email: e.target.value
-                                    }));                                   
-                                }}
-                                type="email"
-                            />                            
-                        </div>
-                        <div className="pt-2">
-                            <LabelInput
-                                label="Password"
-                                type={"password"}
-                                placeholder="password"
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                                    setPostInputs((currentInput) => ({
-                                        ...currentInput,
-                                        password: e.target.value
-                                    }));
                                 }}
                             />
-                        </div>
-                        <div className="pt-5">
-                            <button
-                                type="button"
-                                className="w-full text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 me-2 mb-2"
-                                onClick={sendRequest}
-                            >
-                                {type === "signup" ? "Sign up" : "Sign in"}
-                            </button>
-                        </div>
+                        )}
+
+                        <LabelInput
+                            label="Email Address"
+                            placeholder="Enter your email"
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                                setPostInputs((currentInput) => ({
+                                    ...currentInput,
+                                    email: e.target.value
+                                }));
+                            }}
+                            type="email"
+                        />
+
+                        <LabelInput
+                            label="Password"
+                            type="password"
+                            placeholder="Enter your password"
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                                setPostInputs((currentInput) => ({
+                                    ...currentInput,
+                                    password: e.target.value
+                                }));
+                            }}
+                        />
+
+                        {/* Main Action Button */}
                         <button
-                        onClick= {sendRequest}
                             type="button"
-                            className="w-full text-white bg-[#050708] hover:bg-[#050708]/90 
-                        focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg 
-                        text-sm px-5 py-2.5 text-center inline-flex items-center justify-center 
-                        dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 me-2 mb-2"
-                            > Login without credential
+                            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 mt-6"
+                            onClick={sendRequest}
+                        >
+                            {type === "signup" ? "Create Account" : "Sign In"}
+                        </button>
+
+                        {/* Divider */}
+                        <div className="relative my-6">
+                            <div className="absolute inset-0 flex items-center">
+                                <div className="w-full border-t border-gray-600"></div>
+                            </div>
+                            <div className="relative flex justify-center text-sm">
+                                <span className="px-2 bg-gray-900 text-gray-400">or</span>
+                            </div>
+                        </div>
+
+                        {/* Demo Login Button */}
+                        <button
+                            onClick={sendRequest}
+                            type="button"
+                            className="w-full bg-gray-700 hover:bg-gray-600 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                        >
+                            Quick Demo Access
                         </button>
                     </div>
+
+                    {/* Footer Link */}
+                    <div className="mt-8 text-center">
+                        <p className="text-gray-400 text-sm">
+                            {type === "signin" ? "Don't have an account?" : "Already have an account?"}
+                            <Link 
+                                className="text-blue-400 hover:text-blue-300 font-medium ml-1 transition-colors duration-200" 
+                                to={type === "signin" ? "/signup" : "/signin"}
+                            >
+                                {type === "signup" ? "Sign in" : "Sign up"}
+                            </Link>
+                        </p>
+                    </div>
+                </div>
+
+                {/* Brand Footer */}
+                <div className="text-center mt-8">
+                    <p className="text-gray-500 text-xs">
+                        Powered by <span className="font-semibold text-white">Blogify</span>
+                    </p>
                 </div>
             </div>
         </div>
     );
 };
-
-
 
 interface LabelInputType {
     label: string;
@@ -113,12 +141,15 @@ interface LabelInputType {
 
 export const LabelInput = ({ label, placeholder, onChange, type = "text" }: LabelInputType) => {
     return (
-        <div>
-            <label className="block mb-2 text-sm text-gray-900 dark:text-black font-bold">{label}</label>
+        <div className="space-y-2">
+            <label className="block text-sm font-medium text-white">
+                {label}
+            </label>
             <input
                 onChange={onChange}
                 type={type || "text"}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="w-full bg-gray-800 border border-gray-600 text-white text-sm rounded-lg focus:ring-2 focus:ring-blue-500
+                 focus:border-blue-500 p-3 placeholder-gray-400 transition-colors duration-200"
                 placeholder={placeholder}
                 required
             />

@@ -21,15 +21,8 @@ function App() {
       <Route path="/blog/:id" element={<Blog/>}/>
       <Route path="/publish" element={<Publish/>}/>  
       <Route path="/GenerateyourthoughtswithAI" element={<TextGenerator/>}/>  
-      
-      
       </Routes>
-    
-    
-    
     </BrowserRouter>
-    
-    
     </>
   )
   

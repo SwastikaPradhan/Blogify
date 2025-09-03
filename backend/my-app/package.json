@@ -10,6 +10,7 @@
     "@swastikap/blogify-common": "^1.0.0",
     "@swastikapradhan/blogify-common": "^1.0.0",
     "@swastikapradhan669/blogify-common": "^1.0.0",
+    "bcryptjs": "^2.4.3",
     "deploy": "^1.0.3",
     "hono": "^4.6.9",
     "jsonwebtoken": "^9.0.2",

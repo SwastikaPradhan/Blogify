@@ -14,13 +14,7 @@ const Signin = () => {
             <Quote/>
 
             </div>
-            
-           
-
         </div>
-        
-
-
     </div>
   )
 }

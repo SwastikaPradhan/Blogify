@@ -1,7 +1,8 @@
 import { Hono } from "hono";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from '@prisma/extension-accelerate'
-import { sign } from 'hono/jwt'
+import { sign } from 'hono/jwt';
+
 import { signupInput, signinInput} from '@swastikapradhan669/blogify-common';  
 
 
@@ -25,6 +26,7 @@ userRouter.post('/signup', async (c) => {
       message: "Input not correct"
     })
   }
+  
   try {
     const user = await prisma.user.create({
       data: {
@@ -33,11 +35,7 @@ userRouter.post('/signup', async (c) => {
         password: body.password
       }
     });
-    const userResponse = {
-      id:user.id,
-      name:user.name,
-      email:user.email
-    }
+   
     const jwt = await sign({
       id: user.id
     }, c.env.JWT_SECRET);
