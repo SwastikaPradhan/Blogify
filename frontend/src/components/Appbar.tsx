@@ -5,8 +5,8 @@ export const Appbar = () => {
     return (
         <div className="border-b border-gray-700 flex justify-between px-10 py-3 h-16 bg-black">
             <div className="flex flex-col text-lg justify-center font-bold cursor-pointer">
-                <Link to="/blog" className="flex items-center text-4xl font-bold text-white hover:text-gray-300 transition-colors">
-                   <PiHandbagFill className="mr-2" /> Blogify
+                <Link to="/" className="flex items-center text-4xl font-bold text-white hover:text-gray-300 transition-colors">
+                   <PiHandbagFill className="mr-2"/> Blogify
                 </Link>
             </div>
             
