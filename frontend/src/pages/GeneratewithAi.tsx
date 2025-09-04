@@ -82,7 +82,9 @@ const TextGenerator: React.FC = () => {
         }
 
         try {
-            const token = localStorage.getItem("token");
+            const rawtoken = localStorage.getItem("token");
+            const token=rawtoken?.replace(/^"|"$/g, "");
+
            
             if (!token) {
                 toast.error("Please login to create a blog post.");
@@ -98,7 +100,7 @@ const TextGenerator: React.FC = () => {
                 },
                 {
                     headers: {
-                        Authorization: `Bearer ${JSON.parse(token)}`,
+                        Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json",
                     },
                 }
