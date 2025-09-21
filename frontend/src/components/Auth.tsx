@@ -34,9 +34,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
                         <h1 className="text-3xl font-bold text-white mb-2">
                             {type === "signup" ? "Create Account" : "Welcome Back"}
                         </h1>
-                        <p className="text-gray-400 text-sm">
-                            {type === "signup" ? "Join our community today" : "Sign in to your account"}
-                        </p>
+                        
                     </div>
 
                     {/* Form */}
