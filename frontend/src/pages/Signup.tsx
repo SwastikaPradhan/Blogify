@@ -10,7 +10,10 @@ const Signup = () => {
               <Auth type="signup"/>
             </div>
             <div className="hidden lg:block">
-            <Quote/>
+              <div className="absolute left-0 top-0 h-full w-px bg-gray-300"></div>
+                <div className="pl-8">
+                   <Quote/>
+                </div>
             </div>
         </div>        
     </div>

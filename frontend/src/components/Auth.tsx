@@ -81,7 +81,8 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
                         {/* Main Action Button */}
                         <button
                             type="button"
-                            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 mt-6"
+                            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors 
+                            duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 mt-6"
                             onClick={sendRequest}
                         >
                             {type === "signup" ? "Create Account" : "Sign In"}
@@ -96,15 +97,6 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
                                 <span className="px-2 bg-gray-900 text-gray-400">or</span>
                             </div>
                         </div>
-
-                        {/* Demo Login Button */}
-                        <button
-                            onClick={sendRequest}
-                            type="button"
-                            className="w-full bg-gray-700 hover:bg-gray-600 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900"
-                        >
-                            Quick Demo Access
-                        </button>
                     </div>
 
                     {/* Footer Link */}

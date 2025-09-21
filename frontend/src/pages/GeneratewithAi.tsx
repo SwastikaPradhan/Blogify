@@ -16,7 +16,7 @@ const TextGenerator: React.FC = () => {
     const [blogTitle, setBlogTitle] = useState("");
     const navigate = useNavigate();
 
-   const apiKey: string = import.meta.env.VITE_GEMINI_API_KEY as string;
+    const apiKey: string = import.meta.env.VITE_GEMINI_API_KEY as string;
 
 
     const genAI = new GoogleGenerativeAI(apiKey);
@@ -31,7 +31,6 @@ const TextGenerator: React.FC = () => {
             setIsLoading(true);
 
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
             const enhancedPrompt = `Write a comprehensive blog post about: ${prompt}. 
             Please format it with a clear title, introduction, main sections with headings, and a conclusion. 
             Make it engaging and informative. Use markdown formatting for better readability.`;
@@ -83,9 +82,9 @@ const TextGenerator: React.FC = () => {
 
         try {
             const rawtoken = localStorage.getItem("token");
-            const token=rawtoken?.replace(/^"|"$/g, "");
+            const token = rawtoken?.replace(/^"|"$/g, "");
 
-           
+
             if (!token) {
                 toast.error("Please login to create a blog post.");
                 navigate("/signin");
